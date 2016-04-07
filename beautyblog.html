@@ -1,14 +1,76 @@
 <head>
-  <title>beautyblog</title>
+  
+  <title>Brig's Beauty Beat</title>
+  
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  
+  <h1>Brig's Beauty Blog</h1>
 
-  {{> hello}}
+    {{> blog }}
+
+    {{> listBlogs }}
+    
+  
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="blog">
+    
+    <div class="row">
+        <div class="container">
+            <form id="blogForm" class="form-horizontal" role="form">
+                
+                <div class="form-group">
+                    <label for="inputTitle" class="col-sm-2 control-label">Title</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="blogTitle" class="form-control" placeholder="What's this post about?">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">What do you have to say today?</label>
+                    <div class="col-sm-10">
+                        <textarea id="blogBody" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Post me!</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
 </template>
+
+
+<template name="listBlogs">
+
+  <div class="container">
+
+  {{#each blogs }}
+    <div class="row">
+
+      <div class="col-lg-4">
+        <h3>{{ title }}</h3>
+      </div>
+      
+      <div class="col-lg-5">
+        <p>{{ body }}</p>
+      </div>
+
+    </div>
+  {{/each }}  
+
+  </div> 
+</template>
+
+<body>
+      <div class="important">
+        <h2>About Me</h2>
+        
+        <p>Hey guys! I'm Brigette. Welcome to my beauty blog! So here's a little bit of info about me...I'm a college student who loves the outdoors and going on new adventures. I'm originally from the San Francisco Bay Area and the military is what brought me and my husband to Kansas. In my spare time I've started up this blog to discuss makeup, fashion, and life. </p></div>
+    </body>

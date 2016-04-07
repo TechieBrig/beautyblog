@@ -1,25 +1,53 @@
-if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
+Blogs = new Mongo.Collection("blogs")
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
-    }
+Meteor.methods({
+  createPost: function  (text) {
+  
+
+    Blogs.insert({
+      title: title,
+      body: body,
+      createdAt: new Date(),
+    
   });
+},
 
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
+deletePost: function(post)
+
+Posts.remove(post);
+}
+});
+
+Template.body.helpers({
+  posts: function() {
+    return Posts.find({}, {
+      sort: { createdAt: -1 }
+    });
+  }
+});
+
+Template.body.events({
+  'submit .new-post': function (event) {
+    event.preventDefault();
+
+  Meteor.call('createPost',event.target.text)
+
+    event.target.text.value ='';
+  }
+});
+
+  Template.post.helpers({
+    time: function() {
+      return moment(this.createdAt).fromNow();
+    },
+
+Template.post.events({
+    'click .delete-post': function(event) {
+      Meteor.call('deletepost');
     }
   });
 }
-
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    // code to run on server at startup
   });
 }
-
-
