@@ -1,21 +1,19 @@
 Blogs = new Mongo.Collection("blogs")
 
 Meteor.methods({
-  createPost: function  (text) {
-  
+  createPost: function(text) {
 
     Blogs.insert({
-      title: title,
-      body: body,
+      title: text,
+      body: text,
       createdAt: new Date(),
-    
-  });
+    });
 },
 
 deletePost: function(post)
 
-Posts.remove(postId);
-}
+  Posts.remove(postId);
+  }
 });
 
 Template.body.helpers({
